@@ -1,10 +1,12 @@
-const fs = require('fs');
-const path = require('path');
-const sass = require('node-sass');
+'use strict';
 
-const varReg = /\$([\w-]+)/g;
+var fs = require('fs');
+var path = require('path');
+var sass = require('node-sass');
+
+var varReg = /\$([\w-]+)/g;
 //const importReg = /\@import\s+['"]([^'"]+)['"];/g
-const cssReg = /load-sass-variables{([^}]+)}$/;
+var cssReg = /load-sass-variables{([^}]+)}$/;
 
 function match(reg, string, index) {
   if (!index) {
@@ -24,7 +26,9 @@ module.exports = function (filePath) {
   var content = fs.readFileSync(filePath).toString();
   var matchs = match(varReg, content, 1);
 
-  var variablesCss = matchs.map(variable => variable + ': $' + variable + ';').join('');
+  var variablesCss = matchs.map(function (variable) {
+    return variable + ': $' + variable + ';';
+  }).join('');
   variablesCss = 'load-sass-variables{' + variablesCss + '}';
 
   content += variablesCss;

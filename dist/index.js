@@ -1,8 +1,10 @@
+'use strict';
+
 var loadSassVariables = require('./loadSassVariables');
 
-const loader = function (source, map) {
+var loader = function loader(source, map) {
   var vars = loadSassVariables(this.resourcePath);
-  return 'module.exports =' + JSON.stringify(vars);
+  return 'module.exports =' + JSON.stringify(vars) + ';';
 };
 
-export { loader as default, loadSassVariables };
+module.exports = loader;
