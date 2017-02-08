@@ -1,6 +1,6 @@
 {
   "name": "mk-sass-variables-loader",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Sass variables loader for webpack",
   "main": "dist/index.js",
   "scripts": {

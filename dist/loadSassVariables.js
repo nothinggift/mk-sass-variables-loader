@@ -6,7 +6,7 @@ var sass = require('node-sass');
 
 var varReg = /\$([\w-]+)/g;
 //const importReg = /\@import\s+['"]([^'"]+)['"];/g
-var cssReg = /load-sass-variables{([^}]+)}$/;
+var cssReg = /load-sass-variables {(.+)}\s+$/;
 
 function match(reg, string, index) {
   if (!index) {
@@ -41,17 +41,17 @@ module.exports = function (filePath) {
     outputStyle: 'compact'
   });
   var cssString = result.css.toString();
-  cssString = cssString.replace(/\s/g, '');
   var cssMatchs = cssString.match(cssReg);
   if (cssMatchs === null) {
     return {};
   }
-
   var cssArray = cssMatchs[1].split(';');
   cssArray.pop();
   cssArray.forEach(function (item) {
     var items = item.split(':');
-    variables[items[0]] = items[1];
+    var name = items[0].replace(/^\s/, '');
+    var value = items[1].replace(/^\s/, '');
+    variables[name] = value;
   });
   return variables;
 };
