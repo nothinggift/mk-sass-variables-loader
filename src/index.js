@@ -1,4 +1,5 @@
 var loadSassVariables = require('./loadSassVariables')
+var loaderUtils = require('loader-utils')
 
 const loader = function (source, map) {
   let options = loaderUtils.getOptions(this)

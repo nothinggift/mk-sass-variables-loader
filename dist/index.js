@@ -1,6 +1,7 @@
 'use strict';
 
 var loadSassVariables = require('./loadSassVariables');
+var loaderUtils = require('loader-utils');
 
 var loader = function loader(source, map) {
   var options = loaderUtils.getOptions(this);
