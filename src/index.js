@@ -1,7 +1,9 @@
 var loadSassVariables = require('./loadSassVariables')
 
 const loader = function (source, map) {
-  var vars = loadSassVariables(this.resourcePath)
+  let options = loaderUtils.getOptions(this)
+  let includeAll = !!options.all
+  var vars = loadSassVariables(this.resourcePath, includeAll)
   return 'module.exports =' + JSON.stringify(vars) + ';'
 }
 

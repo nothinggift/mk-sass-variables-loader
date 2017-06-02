@@ -1,6 +1,6 @@
 {
   "name": "mk-sass-variables-loader",
-  "version": "0.0.5",
+  "version": "0.0.7",
   "description": "Sass variables loader for webpack",
   "main": "dist/index.js",
   "scripts": {
@@ -24,7 +24,12 @@
     "url": "https://github.com/nothinggift/mk-sass-variables-loader/issues"
   },
   "homepage": "https://github.com/nothinggift/mk-sass-variables-loader/#readme",
+  "files": [
+    "dist",
+    "README.md"
+  ],
   "dependencies": {
+    "loader-utils": "^1.1.0",
     "node-sass": "^4.5.1"
   },
   "devDependencies": {

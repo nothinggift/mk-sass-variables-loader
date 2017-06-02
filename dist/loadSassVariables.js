@@ -4,6 +4,8 @@ var fs = require('fs');
 var path = require('path');
 var sass = require('node-sass');
 
+var mergeSass = require('./mergeSass');
+
 var varReg = /\$([\w-]+)/g;
 //const importReg = /\@import\s+['"]([^'"]+)['"];/g
 var cssReg = /load-sass-variables {(.+)}\s+$/;
@@ -21,22 +23,22 @@ function match(reg, string, index) {
   }
   return matchs;
 }
-module.exports = function (filePath) {
+module.exports = function (filePath, includeAll) {
   var variables = {};
-  var content = fs.readFileSync(filePath).toString();
-  var matchs = match(varReg, content, 1);
+  var sassString = includeAll ? mergeSass(filePath) : fs.readFileSync(filePath).toString();
+  var matchs = match(varReg, sassString, 1);
 
   var variablesCss = matchs.map(function (variable) {
     return variable + ': $' + variable + ';';
   }).join('');
   variablesCss = 'load-sass-variables{' + variablesCss + '}';
 
-  content += variablesCss;
+  sassString += variablesCss;
 
   var imports = [path.dirname(filePath)];
 
   var result = sass.renderSync({
-    data: content,
+    data: sassString,
     includePaths: imports,
     outputStyle: 'compact'
   });

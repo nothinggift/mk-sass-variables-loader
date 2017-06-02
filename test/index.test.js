@@ -32,4 +32,13 @@ context('test sass variables loader', function() {
       expect(Object.keys(json).length).to.be.equal(2);
     })
   })
+
+  describe('load all import sass variables', function() {
+    var sassPath = path.resolve(__dirname, 'variables.scss')
+    var json = loadSassVariables(sassPath, true)
+    it('should return a object with 261 items', function() {
+      expect(json).to.be.an('object')
+      expect(Object.keys(json).length).to.be.equal(261);
+    })
+  })
 })
