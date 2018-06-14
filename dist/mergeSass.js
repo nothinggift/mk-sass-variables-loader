@@ -1,7 +1,6 @@
 'use strict';
 
 var sass = require('node-sass');
-var path = require("path");
 var fs = require('fs');
 
 var importReg = /\@import\s+['"]([^'"]+)['"];/g;
@@ -11,7 +10,8 @@ module.exports = function (file) {
     file: file
   });
   var files = output.stats.includedFiles;
-  files.reverse();
+  // 调整排序
+  files.push(files.shift());
   var sassString = '';
   for (var i in files) {
     var str = fs.readFileSync(files[i]).toString();

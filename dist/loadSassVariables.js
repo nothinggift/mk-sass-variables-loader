@@ -36,7 +36,6 @@ module.exports = function (filePath, includeAll) {
   sassString += variablesCss;
 
   var imports = [path.dirname(filePath)];
-
   var result = sass.renderSync({
     data: sassString,
     includePaths: imports,

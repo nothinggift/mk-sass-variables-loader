@@ -1,5 +1,4 @@
 const sass = require('node-sass')
-const path = require("path")
 const fs = require('fs')
 
 const importReg = /\@import\s+['"]([^'"]+)['"];/g
@@ -9,7 +8,8 @@ module.exports = function (file) {
     file: file
   })
   let files = output.stats.includedFiles
-  files.reverse()
+  // 调整排序
+  files.push(files.shift())
   let sassString = ''
   for (let i in files) {
     let str = fs.readFileSync(files[i]).toString()
