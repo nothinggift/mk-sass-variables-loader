@@ -7,7 +7,7 @@ var sass = require('node-sass');
 var mergeSass = require('./mergeSass');
 
 var varReg = /\$([\w-]+)/g;
-//const importReg = /\@import\s+['"]([^'"]+)['"];/g
+// const importReg = /\@import\s+['"]([^'"]+)['"];/g
 var cssReg = /load-sass-variables {(.+)}\s+$/;
 
 function match(reg, string, index) {

@@ -1,6 +1,6 @@
 {
   "name": "mk-sass-variables-loader",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "Sass variables loader for webpack",
   "main": "dist/index.js",
   "scripts": {
@@ -30,7 +30,7 @@
   ],
   "dependencies": {
     "loader-utils": "^1.1.0",
-    "node-sass": "^4.5.1"
+    "node-sass": "^4.9.0"
   },
   "devDependencies": {
     "babel": "^6.3.26",
